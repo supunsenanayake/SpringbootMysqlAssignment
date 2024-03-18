@@ -18,13 +18,6 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    // Handle custom exceptions
-//    @ExceptionHandler(CustomNotFoundException.class)
-//    public ResponseEntity<?> handleCustomNotFoundException(CustomNotFoundException e) {
-//        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-//    }
-
-    // Handle generic exceptions
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleException(Exception e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

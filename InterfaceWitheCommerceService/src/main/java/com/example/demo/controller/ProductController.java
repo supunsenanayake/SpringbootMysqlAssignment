@@ -27,7 +27,7 @@ public class ProductController {
             @RequestParam(required = false) String category,
             @RequestParam(required = false) String brand,
             @RequestParam(required = false) Integer limit) {
-        return productService.findProductsByCriteria(category, brand, limit);
+        return productService.findProductsByCriteria(shopperId, category, brand, limit);
     }
     // Other endpoints...
 }
