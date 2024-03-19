@@ -4,6 +4,7 @@ package com.example.demo.controller;
 import com.example.demo.entity.Product;
 import com.example.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,12 +23,16 @@ public class ProductController {
     }
 
     @GetMapping
+    @Cacheable(value = "products", key = "#shopperId.concat(#category == null ? '' : #category).concat(#brand == null ? '' : #brand).concat(#limit.toString())")
     public List<Product> getProductsByCriteria(
-            @RequestParam(required = false) String shopperId,
+            @RequestParam(required = true) String shopperId,
             @RequestParam(required = false) String category,
             @RequestParam(required = false) String brand,
-            @RequestParam(required = false) Integer limit) {
+            @RequestParam(required = false, defaultValue = "10") Integer limit) {
+        if ((category != null && category.trim().isEmpty()) || (brand != null && brand.trim().isEmpty())) {
+            throw new ValidationException("Category and brand cannot be empty");
+
+        }
         return productService.findProductsByCriteria(shopperId, category, brand, limit);
     }
-    // Other endpoints...
 }

@@ -9,7 +9,7 @@ public class Shopper {
 
     @Id
     private String shopperId;
-    // Consider adding more shopper-specific fields here, e.g., name, email
+
 
     // Default constructor
     public Shopper() {}
@@ -28,5 +28,5 @@ public class Shopper {
         this.shopperId = shopperId;
     }
 
-    // Additional getters and setters for other fields
+
 }

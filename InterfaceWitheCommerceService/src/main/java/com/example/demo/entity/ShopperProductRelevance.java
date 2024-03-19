@@ -20,7 +20,6 @@ public class ShopperProductRelevance {
 
     private double relevancyScore;
 
-    // Default constructor
     public ShopperProductRelevance() {}
 
     // Constructor, getters and setters

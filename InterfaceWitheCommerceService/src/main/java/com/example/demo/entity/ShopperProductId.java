@@ -31,5 +31,4 @@ public class ShopperProductId implements Serializable {
         this.product = product;
     }
 
-    // Implement equals() and hashCode()
 }
