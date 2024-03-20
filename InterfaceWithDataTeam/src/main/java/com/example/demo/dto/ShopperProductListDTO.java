@@ -13,6 +13,11 @@ public class ShopperProductListDTO {
     @Size(min = 1, message = "Shelf must contain at least one product")
     private List<@NotNull ProductRelevanceDTO> shelf;
 
+    public ShopperProductListDTO(String shopperId, List<@NotNull ProductRelevanceDTO> shelf) {
+        this.shopperId = shopperId;
+        this.shelf = shelf;
+    }
+
     public String getShopperId() {
         return shopperId;
     }

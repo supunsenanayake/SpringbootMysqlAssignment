@@ -7,6 +7,11 @@ public class ProductRelevanceDTO {
     private String productId;
     private double relevancyScore;
 
+    public ProductRelevanceDTO(String productId, double relevancyScore) {
+        this.productId = productId;
+        this.relevancyScore = relevancyScore;
+    }
+
     public String getProductId() {
         return productId;
     }
