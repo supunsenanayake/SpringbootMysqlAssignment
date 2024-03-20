@@ -7,10 +7,10 @@ import org.springframework.cache.annotation.EnableCaching;
 @SpringBootApplication
 @EnableCaching
 
-public class DemoApplication {
+public class EcommerceServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(EcommerceServiceApplication.class, args);
 	}
 
 }

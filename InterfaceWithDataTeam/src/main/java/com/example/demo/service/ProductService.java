@@ -6,9 +6,7 @@ import com.example.demo.entity.Product;
 import com.example.demo.entity.Shopper;
 import com.example.demo.entity.ShopperProductRelevance;
 import com.example.demo.repository.ProductRepository;
-import com.example.demo.repository.ShopperProductRelevanceRepository;
 import com.example.demo.repository.ShopperRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +23,18 @@ public class ProductService {
     private ShopperRepository shopperRepository;
 
     public void saveProductMetadata(ProductDTO productDto) {
-        Product product = new Product(productDto.getProductId(), productDto.getCategory(), productDto.getBrand());
-        productRepository.save(product);
+
+        boolean exists = productRepository.existsById(productDto.getProductId());
+
+        if (exists) {
+            // Handle the case where the product already exists. For example, throw an exception.
+            throw new IllegalStateException("Product with ID " + productDto.getProductId() + " already exists.");
+        } else {
+            // Convert DTO to entity
+            Product product = new Product(productDto.getProductId(), productDto.getCategory(), productDto.getBrand());
+            // Save the new product
+            productRepository.save(product);
+        }
     }
 
 
