@@ -7,6 +7,8 @@ import com.example.demo.entity.Shopper;
 import com.example.demo.entity.ShopperProductRelevance;
 import com.example.demo.repository.ProductRepository;
 import com.example.demo.repository.ShopperProductRelevanceRepository;
+import com.example.demo.repository.ShopperRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,22 +22,27 @@ public class ProductService {
     private ProductRepository productRepository;
 
     @Autowired
-    private ShopperProductRelevanceRepository shopperProductRelevanceRepository;
+    private ShopperRepository shopperRepository;
 
     public void saveProductMetadata(ProductDTO productDto) {
-        Product product = new Product(productDto.getProductId(),productDto.getCategory(),productDto.getBrand());
+        Product product = new Product(productDto.getProductId(), productDto.getCategory(), productDto.getBrand());
         productRepository.save(product);
     }
+
 
     public void saveShopperProductRelevance(ShopperProductListDTO shopperProductListDTO) {
         List<ShopperProductRelevance> shopperProductRelevances = shopperProductListDTO.getShelf().stream()
                 .map(productRelevanceDTO -> {
                     ShopperProductRelevance spr = new ShopperProductRelevance();
-                    spr.setShopper(new Shopper( (shopperProductListDTO.getShopperId() )));
-                    spr.setProduct(new Product( ( productRelevanceDTO.getProductId()),null,null));
+                    spr.setShopper(new Shopper((shopperProductListDTO.getShopperId())));
+                    spr.setProduct(new Product((productRelevanceDTO.getProductId()), null, null));
                     spr.setRelevancyScore(productRelevanceDTO.getRelevancyScore());
                     return spr;
                 }).collect(Collectors.toList());
-        shopperProductRelevanceRepository.saveAll(shopperProductRelevances);
+        Shopper shopper = new Shopper();
+        shopper.setShopperId(shopperProductListDTO.getShopperId());
+        shopper.setShelf(shopperProductRelevances);
+        shopperRepository.save(shopper);
+
     }
 }

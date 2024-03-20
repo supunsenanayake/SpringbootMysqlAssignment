@@ -11,11 +11,11 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, String> {
 
-    @Query("SELECT p FROM Product p JOIN ShopperProductRelevance spr ON p.productId = spr.product.productId " +
+    @Query("SELECT DISTINCT p FROM Product p JOIN ShopperProductRelevance spr ON p.productId = spr.product.productId " +
             "WHERE spr.shopper.shopperId = :shopperId " +
             "AND (:category IS NULL OR p.category = :category) " +
             "AND (:brand IS NULL OR p.brand = :brand) " +
-            "ORDER BY spr.relevancyScore DESC")
+            "ORDER BY spr.relevancyScore DESC" )
     List<Product> findProductsByShopperWithFilters(
             @Param("shopperId") String shopperId,
             @Param("category") String category,

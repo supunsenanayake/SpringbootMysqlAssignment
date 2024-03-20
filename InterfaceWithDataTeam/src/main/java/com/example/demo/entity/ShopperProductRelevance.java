@@ -1,22 +1,19 @@
 package com.example.demo.entity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
-
+import jakarta.persistence.*;
 
 
 @Entity
-@IdClass(ShopperProductId.class)
 public class ShopperProductRelevance {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @ManyToOne
     @JoinColumn(name = "shopperId", referencedColumnName = "shopperId")
     private Shopper shopper;
 
-    @Id
+
     @ManyToOne
     @JoinColumn(name = "productId", referencedColumnName = "productId")
     private Product product;

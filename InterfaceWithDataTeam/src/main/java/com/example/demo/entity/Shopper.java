@@ -1,25 +1,35 @@
 package com.example.demo.entity;
 
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+import java.util.List;
 
 @Entity
 public class Shopper {
+    public Shopper() {
+    }
 
-    @Id
-    private String shopperId;
-    // Consider adding more shopper-specific fields here, e.g., name, email
-
-    // Default constructor
-    public Shopper() {}
-
-    // Constructor, getters and setters
     public Shopper(String shopperId) {
         this.shopperId = shopperId;
     }
 
-    // Getters and setters
+    @Id
+    private String shopperId;
+    @OneToMany(mappedBy = "shopper", cascade = CascadeType.ALL)
+    private List<ShopperProductRelevance> shelf;
+
+    public List<ShopperProductRelevance> getShelf() {
+        return shelf;
+    }
+
+    public void setShelf(List<ShopperProductRelevance> shelf) {
+        this.shelf = shelf;
+    }
+
     public String getShopperId() {
         return shopperId;
     }
@@ -28,5 +38,5 @@ public class Shopper {
         this.shopperId = shopperId;
     }
 
-    // Additional getters and setters for other fields
+
 }

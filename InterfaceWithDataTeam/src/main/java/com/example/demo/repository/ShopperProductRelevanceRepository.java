@@ -1,8 +1,7 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.ShopperProductId;
 import com.example.demo.entity.ShopperProductRelevance;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ShopperProductRelevanceRepository extends JpaRepository<ShopperProductRelevance, ShopperProductId> {
+public interface ShopperProductRelevanceRepository extends JpaRepository<ShopperProductRelevance, String> {
 }
