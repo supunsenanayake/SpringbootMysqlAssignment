@@ -34,7 +34,7 @@ This is a simple spring boot service "DataTeamApplication.java" is the main clas
 How to run on cmd line interface
 
 #### How to run on CMD line Interface
-1. Configure DB username and password in application.properties (Location: InterfaceWitheCommerceService\src\main\resources)
+1. Configure DB username and password in application.properties (Location: InterfaceWitheDataTeam\src\main\resources)
 
 2. Go to project folder InterfaceWitheCommerceService Open the CMD interface in the project folder and run "mvn clean install" 
 
