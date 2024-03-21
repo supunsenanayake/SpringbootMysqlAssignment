@@ -36,7 +36,7 @@ How to run on cmd line interface
 #### How to run on CMD line Interface
 1. Configure DB username and password in application.properties (Location: InterfaceWitheDataTeam\src\main\resources)
 
-2. Go to project folder InterfaceWitheCommerceService Open the CMD interface in the project folder and run "mvn clean install" 
+2. Go to project folder InterfaceWitheDataTeam Open the CMD interface in the project folder and run "mvn clean install" 
 
 3. After building successfully, run the command.  “mvn spring-boot:run”
 
